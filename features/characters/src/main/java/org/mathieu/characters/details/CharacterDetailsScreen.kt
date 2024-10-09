@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -41,6 +42,7 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import coil.compose.SubcomposeAsyncImage
+import org.mathieu.ui.card.LocationCard
 import org.mathieu.ui.composables.PreviewContent
 
 private typealias UIState = CharacterDetailsState
@@ -57,7 +59,7 @@ fun CharacterDetailsScreen(
 
     CharacterDetailsContent(
         state = state,
-        onClickBack = navController::popBackStack
+        onClickBack = navController::popBackStack,
     )
 
 }
@@ -155,8 +157,15 @@ private fun CharacterDetailsContent(
                     Spacer(modifier = Modifier.height(12.dp))
 
                     Text(text = state.name)
-                }
+                    Spacer(modifier = Modifier.width(12.dp))
 
+                    if (state.locationPreview != null) {
+                        LocationCard(
+                            state.locationPreview.name,
+                            state.locationPreview.type
+                        )
+                    }
+                }
 
             }
         }

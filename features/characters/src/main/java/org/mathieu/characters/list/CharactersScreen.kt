@@ -39,6 +39,8 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onEach
 import org.mathieu.domain.models.character.Character
 import org.mathieu.ui.Destination
+import org.mathieu.ui.card.CharacterCard
+import org.mathieu.ui.card.LocationCard
 import org.mathieu.ui.navigate
 import org.mathieu.ui.theme.Purple40
 
@@ -62,7 +64,6 @@ fun CharactersScreen(navController: NavController) {
         state = state,
         onAction = viewModel::handleAction
     )
-
 }
 
 
@@ -118,38 +119,7 @@ private fun CharactersContent(
             }
         }
     }
-
 }
-
-@Composable
-private fun CharacterCard(
-    modifier: Modifier, character: Character
-) =
-    Row(
-        modifier = modifier
-            .shadow(5.dp)
-            .background(Color.White)
-            .fillMaxWidth()
-            .padding(horizontal = 16.dp, vertical = 12.dp)
-        ,
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-
-        SubcomposeAsyncImage(
-            modifier = Modifier
-                .size(44.dp)
-                .clip(CircleShape),
-            model = character.avatarUrl,
-            contentDescription = null
-        )
-
-        Spacer(modifier = Modifier.width(12.dp))
-
-        Text(text = character.name)
-
-    }
-
-
 
 @Preview
 @Composable
